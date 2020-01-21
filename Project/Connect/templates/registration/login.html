@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/CSS/login.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login Form</title>
+</head>
+<body>
+        <h1>Login</h1> <br>
+    <br>
+    <form method="POST">
+        {% csrf_token %}
+        <h2>Username</h2> <input type="text" placeholder="Enter username" name="input_username"> <br>
+        <h2>Password</h2> <input type="password" placeholder="Enter password" name="input_password"> <br>
+        <button type="submit">Login</button>
+    
+    </form> 
+</body>
+</html>
