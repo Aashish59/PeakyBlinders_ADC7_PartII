@@ -119,6 +119,11 @@ USE_TZ = True
 STATICFILES_DIRS = (
     os.path.join(os.path.dirname(__file__), 'static').replace('\\','/'),
 )
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
