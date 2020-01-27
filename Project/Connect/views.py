@@ -11,7 +11,7 @@ def homepage(request):
     if request.user.is_authenticated:
       return render(request,'Front.html') 
     else:
-      return redirect(adminLogin)
+      return redirect(Login)
 
 def register(request):
     if not request.user.is_superuser and not request.user.is_staff:
@@ -24,18 +24,21 @@ def register(request):
         user.save()
         return render(request,'login.html')
 
-def adminLogin(request): 
+def Login(request):
     if request.method =="GET":
         return render (request,'login.html')
     else:
+        username = request.POST.get('inputEmail')
+        email = request.POST.get('inputEmail')
+        password = request.POST.get('inputPassword')
         print(request.POST)
-        user = authenticate(username=request.POST['input_username'],password=request.POST['input_password'])
+        user = authenticate(username=username, password=password)
         print(user)
         if user is not None:
             login(request,user)
             return redirect(adminPanel)
         else:
-            return HttpResponse("Authentication Failed")
+            return HttpResponse('Not authenticated')
 
 
 def adminPanel(request):
@@ -45,11 +48,11 @@ def adminPanel(request):
     if request.user.is_authenticated:
       return render(request,'admin.html') 
     else:
-      return redirect(adminLogin)
+      return redirect(Login)
 
 def adminLogout(request):
     logout(request)
-    return redirect(adminLogin) 
+    return redirect(Login) 
 
 def userLogin(request):
     if request.method=="GET":

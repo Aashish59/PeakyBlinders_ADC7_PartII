@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from Connect.views import adminLogin
+from Connect.views import Login
 from Connect.views import adminLogout
 from Connect.views import userLogin
 from Connect.views import userLogout
@@ -31,7 +31,7 @@ urlpatterns += [
 
 urlpatterns += [
     # path('accounts/',include('django.contrib.auth.urls')),
-    path('adminlog/',adminLogin),
+    path('', Login),
     path('logout/',adminLogout),
     path('userlog',userLogin),
     path('userlogout',userLogout)
