@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="aimg">
+  {% load static %}
+  <img src="{% static 'images/a.jpg' %}" alt="" style="width: 100%; height:500px">
+  <div class="text-block">
+    <h1>Connect with your institution.</h1> <br>
+    <a href="/login"><button type="button" class="btn btn-secondary" name="button">Connect now</button></a>
+  </div>
+</div>
+{% endblock %}

@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Connect'
+    'Connect',
+    'Post'
 ]
 
 MIDDLEWARE = [
@@ -116,6 +117,14 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
+STATICFILES_DIRS = (
+    os.path.join(os.path.dirname(__file__), 'static').replace('\\','/'),
+)
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
