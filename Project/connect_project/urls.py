@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from Connect.views import Login
 from Connect.views import adminLogout
-
+from django.conf.urls import url
 
 
 urlpatterns = [
@@ -28,9 +28,16 @@ urlpatterns += [
     path('',include('Connect.urls'))
 ]
 
+
+urlpatterns += [
+    path('',include('Post.urls')),
+    
+]
+
+
 urlpatterns += [
     # path('accounts/',include('django.contrib.auth.urls')),
-    path('', Login),
+    path('login/', Login),
     path('logout/',adminLogout),
     
 ]

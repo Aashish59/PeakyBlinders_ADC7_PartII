@@ -1,34 +1,55 @@
-{% extends "base.html" %}
-    {% block content %}
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-              <div class="card card-signin my-5">
-                <div class="card-body">
-                    {% load static %} 
-                    <img src="{% static 'images/logo.png' %}" style="width: 200px; border-radius: 12px;" class=" mx-auto d-block" alt="Logo!" /><br>
-                  <h5 class="card-title text-center">Sign In</h5>
-                  <form class="form-signin" method="POST">
-                    {% csrf_token %}
-                    <div class="form-label-group">
-                      <input type="text" id="inputEmail" name="input_username" class="form-control" placeholder="Email address or username" required autofocus>
-                      <label for="inputEmail">Email address or username</label>
-                    </div>
-      
-                    <div class="form-label-group">
-                      <input type="password" id="inputPassword" name="input_password" class="form-control" placeholder="Password" required>
-                      <label for="inputPassword">Password</label>
-                    </div>
-      
-                    <div class="custom-control custom-checkbox mb-3">
-                      <input type="checkbox" class="custom-control-input" id="customCheck1">
-                      <label class="custom-control-label" for="customCheck1">Remember password</label>
-                    </div>
-                    <button class="btn btn-danger btn-lg btn-primary btn-block text-uppercase btn-signin" type="submit">Sign in</button>
-                  </form>
-                </div>
-              </div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/login.css' %}">
+    <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+              {% load static %} 
+              <img src="{% static 'images/logo.png' %}" style="width: 200px; border-radius: 12px;" class=" mx-auto d-block" alt="Logo!" /><br>
+            <h5 class="card-title text-center">Sign In</h5>
+            {% if messages %} {% for message in messages %}
+            <div class="alert alert-{{ message.type }}">
+                {{ message.content }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+            {% endfor %} {% endif %}
+            <form class="form-signin" method="POST">
+              {% csrf_token %}
+              <div class="form-label-group">
+                <input type="text" id="inputEmail" name="username" class="form-control" placeholder="Email address or username" required autofocus>
+                <label for="inputEmail">Email address or username</label>
+              </div>
+
+              <div class="form-label-group">
+                <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+                <label for="inputPassword">Password</label>
+              </div>
+
+              <div class="custom-control custom-checkbox mb-3">
+                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                <label class="custom-control-label" for="customCheck1">Remember password</label>
+              </div>
+              <button class="btn btn-danger btn-lg btn-primary btn-block text-uppercase btn-signin" type="submit">Connect now</button>
+            </form>
           </div>
         </div>
-    {% endblock %}
+      </div>
+    </div>
+  </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</html>

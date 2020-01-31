@@ -4,7 +4,7 @@ from .views import *
 
 urlpatterns = [
     path('signup/',register),
-    path('home/',homepage),
+    path('',homepage),
     path('adminpanel/',adminPanel),
     path('homes/',home),
     
