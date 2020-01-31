@@ -1,7 +1,10 @@
-
+{% extends 'base.html' %}
+{% block content %}
 <form action="{% url 'post_upload' %}" method="post">                                                             
     {% csrf_token %}
     <label for="content"></label>
     <input type="text" name="content" id="content" />
     <input type="submit" />
-  </form
+</form>
+<a href="/logout"><button class="btn btn-primary">Logout</button></a>
+{% endblock %}
