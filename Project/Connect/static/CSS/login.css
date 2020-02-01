@@ -4,7 +4,7 @@
   }
   
   body {
-    background: #5F0F4E;  
+    background: #f5f5f5  
   }
   
   .card-signin {
@@ -99,7 +99,9 @@
   }
   
   .btn-signin {
-      background-color: #5F0F4E
+    color: black;
+      background-color: #f5f5f5
+
   }
   
   /* Fallback for Edge
