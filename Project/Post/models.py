@@ -1,16 +1,13 @@
 from django.db import models
 
 # Create your models here.
-class Post(models.Model):     
-                                                               
-    content = models.CharField(max_length=256)                                                 
-    created_at = models.DateTimeField('Datetime created')           
+class Post(models.Model):
+    title = models.CharField(max_length=120)
+    content = models.TextField()
+    updated = models.DateTimeField(auto_now=True, auto_now_add=False)
+    timestap = models.DateTimeField(auto_now=False, auto_now_add=True)
 
     def __str__(self):
-        return self.content
+        return self.title     
 
-class Comment(models.Model):                                                                   
-    post = models.ForeignKey('Post', on_delete=models.CASCADE)                                                             
-    message = models.TextField()                                                               
-    created_at = models.DateTimeField('Datetime created')
-                                                                                    
+                                                                                   
