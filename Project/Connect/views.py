@@ -5,12 +5,17 @@ from django.contrib.auth import authenticate,login,logout
 from django.shortcuts import redirect
 from django.template import loader
 
+from Post.models import Post
 
 # Create your views here.
 def home(request):
     print(request.user)
     if request.user.is_authenticated:
-      return HttpResponse(loader.get_template('authenticatedHome.html').render({},request))
+        queryset = Post.objects.all()
+        context={
+        "object_list": queryset
+        }
+        return HttpResponse(loader.get_template('authenticatedHome.html').render(context,request))
     else:
       return HttpResponse(loader.get_template('home.html').render({},request))
 
@@ -79,15 +84,16 @@ def Login(request):
 
 
 def adminPanel(request):
-    if not request.user.is_superuser and not request.user.is_staff:
-        return redirect(home)
+    if request.user.is_superuser and request.user.is_staff:
+        return HttpResponse(loader.get_template('admin.html').render({},request))
+        
     if request.user.is_authenticated:
-      return HttpResponse(loader.get_template('admin.html').render({},request)) 
+       return redirect(home)
     else:
       return redirect(Login)
     
 def Logout(request):
     logout(request)
-    return redirect(Login) 
+    return redirect(home) 
 
   

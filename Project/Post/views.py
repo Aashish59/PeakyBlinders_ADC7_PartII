@@ -5,15 +5,22 @@ from django.http import HttpResponse
 from django.urls import reverse
 from django.shortcuts import redirect
 from django.template import loader
+from Connect.views import home
+
 from .models import *
+
+from Connect.views import home
+
+
 # Create your views here.
 def post_upload(request):
     if request.method == 'GET':
-        return render(request, 'post.html')
+        return HttpResponse(loader.get_template('upload.html').render({},request))
     elif request.method == 'POST':
-        post = Post.objects.create(content=request.POST['content'],
-                                     created_at=datetime.utcnow())
+        title = request.POST['title']
+        content = request.POST['content']
+        post = Post.objects.create(content=content, title=title)
         post.save()
-        return HttpResponseRedirect(reverse('post_details', kwargs={'post_id': post.id}))
+        return redirect(home)
 
-       
+

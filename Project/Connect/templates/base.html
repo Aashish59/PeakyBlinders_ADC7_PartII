@@ -17,13 +17,11 @@
                 {% load static %} 
               <a class="navbar-brand" href="#"><img src="{% static 'images/logo.png' %}" style="height: 50px;" alt=""></a>
             </div>
-            {% if request.user.is_authenticated %}
-             user
-            {% else %}
+            {% block authentication %}
             <div class="row align-items end">
               <a href="/login"><button type="button" class="btn btn-secondary" name="button">Login</button></a>
             </div>
-            {% endif %}
+            {% endblock %}
           </div>
         </nav>
       </header>
