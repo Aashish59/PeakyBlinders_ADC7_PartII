@@ -3,7 +3,22 @@
             <form class="form-inline my-2 my-lg-0 col-9">
               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="width: 400px;">
             </form>
-              user
+            {% if request.user.is_authenticated %}
+            <ul class="nav navbar-nav">
+              <li class="dropdown">
+                  {% load static %}
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{% static 'images/b.jpg' %}" style="height: 40px;" alt=""></a>
+                <ul class="dropdown-menu">
+                  <a class="profile img" href><img src="{% static 'images/b.jpg' %}" style="height: 80px;" alt=""><br>{{user.first_name}} {{user.last_name}}<br>{{user.email}}</a>
+                  <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Notification<span class="badge pull-right"> 42 </span></a></li>
+                  <li class="divider"></li>
+                  <li><a href="/logout">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                </ul>
+              </li>
+            </ul>
+            {% endif %}
             {% endblock %}
 {% block content %}
 <br>
@@ -24,7 +39,7 @@
 
     </div>
     <div class="col-2">
-        <a href="/logout"><button class="btn btn-primary">Logout</button></a>
+        
     </div>
     <div class="col-8">
         <div class="card-body"> 
