@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block authentication %}
+  {% if request.user.is_authenticated %}
+            <ul class="nav navbar-nav">
+              <li class="dropdown">
+                  {% load static %}
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{% static 'images/b.jpg' %}" style="height: 40px;" alt=""></a>
+                <ul class="dropdown-menu">
+                  <a class="profile img" href><img src="{% static 'images/b.jpg' %}" style="height: 80px;" alt=""><br>{{user.first_name}} {{user.last_name}}<br>{{user.email}}</a>
+                  <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Notification<span class="badge pull-right"> 42 </span></a></li>
+                  <li class="divider"></li>
+                  <li><a href="/logout">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                </ul>
+              </li>
+            </ul>
+            {% endif %}
+{% endblock %}
+{% block content %}
+<br>
+<div class="row">
+    <div class="col-1">
+
+    </div>
+    <div class="col-2">
+    </div>
+    <div class="col-8 card" style="border-radius: 10px;;">
+        <div class="card-body"> 
+        <form action="" method="POST">                                                             
+            {% csrf_token %}
+            <div class="form-label-group">
+                <input type="text" id="title" name="title" class="form-control" placeholder="Title" required autofocus>
+            </div>
+            <br>
+            <div class="form-label-group">
+                <textarea id="Conetnt" name="content" class="form-control" placeholder="Write your content" style="height: 200px;" required autofocus></textarea>
+            </div>
+            <br>
+            <button class="btn btn-sm btn-secondary btn-block btn-signin" type="submit">Share</button> <br>
+            <a href="/"><button class="btn btn-sm btn-danger btn-block btn-signin" type="button">Cancel and go back</button></a>
+        </form>
+        </div>
+    </div>
+    </div>
+{% endblock %}

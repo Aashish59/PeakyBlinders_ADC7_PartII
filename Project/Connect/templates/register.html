@@ -1,4 +1,22 @@
 {% extends "base.html" %}
+{% block authentication %}
+{% if request.user.is_authenticated %}
+            <ul class="nav navbar-nav">
+              <li class="dropdown">
+                  {% load static %}
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{% static 'images/b.jpg' %}" style="height: 40px;" alt=""></a>
+                <ul class="dropdown-menu">
+                  <a class="profile img" href><img src="{% static 'images/b.jpg' %}" style="height: 80px;" alt=""><br>{{user.first_name}} {{user.last_name}}<br>{{user.email}}</a>
+                  <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Notification<span class="badge pull-right"> 42 </span></a></li>
+                  <li class="divider"></li>
+                  <li><a href="/logout">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                </ul>
+              </li>
+            </ul>
+            {% endif %}
+            {% endblock %}
     {% block content %}
     <div class="container">
         <h1>Register</h1>

@@ -23,9 +23,9 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-    path('' ,include('Connect.urls'))
+    path('' ,include('Connect.urls')),
+    path('',include('Post.urls')),
 ]
-
 
 urlpatterns += [
     path('',include('Profile.urls')),

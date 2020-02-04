@@ -1,4 +1,64 @@
 {% extends 'base.html' %}
+{% block authentication %}
+            <form class="form-inline my-2 my-lg-0 col-9">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="width: 400px;">
+            </form>
+            {% if request.user.is_authenticated %}
+            <ul class="nav navbar-nav">
+              <li class="dropdown">
+                  {% load static %}
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{% static 'images/b.jpg' %}" style="height: 40px;" alt=""></a>
+                <ul class="dropdown-menu">
+                  <a class="profile img" href><img src="{% static 'images/b.jpg' %}" style="height: 80px;" alt=""><br>{{user.first_name}} {{user.last_name}}<br>{{user.email}}</a>
+                  <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Notification<span class="badge pull-right"> 42 </span></a></li>
+                  <li class="divider"></li>
+                  <li><a href="/logout">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                </ul>
+              </li>
+            </ul>
+            {% endif %}
+            {% endblock %}
 {% block content %}
-    
+<br>
+<div class="row">
+    <div class="col-1">
+
+    </div>
+    <div class="col-10">
+        {% load static %}
+        <img src="{% static 'images/b.jpg' %}" alt="" style="width: 100%; border-radius: 10px; height:300px;;">
+    </div>
+    <div class="col-1">
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-1">
+
+    </div>
+    <div class="col-2">
+        
+    </div>
+    <div class="col-8">
+        <div class="card-body"> 
+            <a href="/uploads"><button class="btn btn-primary">Create Post</button></a>
+        </div>
+        {% for obj in object_list %} 
+        <div class="card" style="border-radius: 20px;">            
+            <div class="card-body">
+                <h1>{{ obj.title }}</h1>
+                <span>{{ obj.timestap }}</span>
+                <p>{{ obj.content }}</p>
+
+            </div>
+        </div>
+        <br>
+        {% endfor %}
+    </div>
+    <div class="col-1">
+
+    </div>
+</div>
 {% endblock %}
