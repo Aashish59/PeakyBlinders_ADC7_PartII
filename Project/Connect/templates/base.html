@@ -6,7 +6,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/dropdown.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Slabo+27px&display=swap" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <title> {% block title %} Connect {% endblock %} </title>
 </head>
 <body>
@@ -18,7 +22,19 @@
               <a class="navbar-brand" href="#"><img src="{% static 'images/logo.png' %}" style="height: 50px;" alt=""></a>
             </div>
             {% if request.user.is_authenticated %}
-             user
+            <ul class="nav navbar-nav">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{% static 'images/b.jpg' %}" style="height: 40px;" alt=""></a>
+                <ul class="dropdown-menu">
+                  <a class="profile img" href><img src="{% static 'images/b.jpg' %}" style="height: 80px;" alt=""><br>{{user.first_name}} {{user.last_name}}<br>{{user.email}}</a>
+                  <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Notification<span class="badge pull-right"> 42 </span></a></li>
+                  <li class="divider"></li>
+                  <li><a href="/logout">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                </ul>
+              </li>
+            </ul>
             {% else %}
             <div class="row align-items end">
               <a href="/login"><button type="button" class="btn btn-secondary" name="button">Login</button></a>
