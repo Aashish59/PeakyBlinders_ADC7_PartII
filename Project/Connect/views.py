@@ -19,9 +19,22 @@ def home(request):
     else:
       return HttpResponse(loader.get_template('home.html').render({},request))
 
+def accounts(request):
+    if not request.user.is_superuser and not request.user.is_staff:
+        return redirect(home)
+    else:
+        if request.user.is_authenticated:
+            queryset = User.objects.all()
+            context={
+                "object_list": queryset
+            }
+            return HttpResponse(loader.get_template('accounts.html').render(context,request))
+        else:
+            return HttpResponse(loader.get_template('home.html').render({},request))
+            
 def register(request):
     if not request.user.is_superuser and not request.user.is_staff:
-        return HttpResponse('you are not an admin bro')
+        return redirect(home)
     if request.method =="GET":
         return HttpResponse(loader.get_template('register.html').render({},request))
     else:
@@ -55,7 +68,12 @@ def register(request):
             else:
                 user.is_staff = False  
             user.save()
-            return redirect(Login)
+            return redirect(accounts)  
+
+def delete(request, id):  
+    users = User.objects.get(id=id)  
+    users.delete()  
+    return redirect(accounts) 
 
 def Login(request):
     if request.user.is_authenticated:
@@ -78,14 +96,15 @@ def Login(request):
                     "content" : "Incorrect username or password "
                 }
             ],
-        }, request))
-
-    
-
+        }, request))   
 
 def adminPanel(request):
     if request.user.is_superuser and request.user.is_staff:
-        return HttpResponse(loader.get_template('admin.html').render({},request))
+        queryset = Post.objects.all()
+        context={
+            "object_list": queryset
+            }
+        return HttpResponse(loader.get_template('admin.html').render(context,request))
         
     if request.user.is_authenticated:
        return redirect(home)
