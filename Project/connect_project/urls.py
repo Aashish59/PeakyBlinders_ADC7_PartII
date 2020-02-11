@@ -25,6 +25,7 @@ urlpatterns = [
 urlpatterns += [
     path('' ,include('Connect.urls')),
     path('',include('Post.urls')),
+    path('',include('Search.urls')),
 ]
 
 urlpatterns += [

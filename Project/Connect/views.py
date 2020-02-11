@@ -12,11 +12,12 @@ def home(request):
     if request.user.is_superuser and request.user.is_staff:
         return redirect(adminPanel)
     if request.user.is_authenticated:
-        queryset = Post.objects.all()
-        context={
-        "object_list": queryset
+            queryset = Post.objects.all()
+            context={
+            "object_list": queryset
         }
-        return HttpResponse(loader.get_template('authenticatedHome.html').render(context,request))
+            return HttpResponse(loader.get_template('authenticatedHome.html').render(context,request))
+        
     else:
       return HttpResponse(loader.get_template('home.html').render({},request))
 
@@ -115,5 +116,7 @@ def adminPanel(request):
 def Logout(request):
     logout(request)
     return redirect(home) 
+
+
 
   

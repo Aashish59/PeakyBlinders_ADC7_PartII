@@ -6,7 +6,6 @@ from django.urls import reverse
 from django.shortcuts import redirect
 from django.template import loader
 from Connect.views import home
-
 from Post.models import Post
 
 from Connect.views import home
