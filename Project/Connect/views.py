@@ -9,7 +9,8 @@ from Post.models import Post
 
 # Create your views here.
 def home(request):
-    print(request.user)
+    if request.user.is_superuser and request.user.is_staff:
+        return redirect(adminPanel)
     if request.user.is_authenticated:
         queryset = Post.objects.all()
         context={
