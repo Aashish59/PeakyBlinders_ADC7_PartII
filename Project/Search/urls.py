@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.urls import path
-from Post.views import post_upload
-
+from .views import search
+ 
 urlpatterns = [
-    path('uploads/', post_upload),
+    path('search/',search),
+
 ]

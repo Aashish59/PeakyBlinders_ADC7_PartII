@@ -6,7 +6,6 @@ from django.urls import reverse
 from django.shortcuts import redirect
 from django.template import loader
 from Connect.views import home
-
 from Post.models import Post
 
 from Connect.views import home
@@ -22,5 +21,8 @@ def post_upload(request):
         post = Post.objects.create(content=content, title=title)
         post.save()
         return redirect(home)
+
+
+
 
 

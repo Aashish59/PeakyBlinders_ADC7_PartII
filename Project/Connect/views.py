@@ -11,11 +11,14 @@ from Post.models import Post
 def home(request):
     print(request.user)
     if request.user.is_authenticated:
-        queryset = Post.objects.all()
-        context={
-        "object_list": queryset
+        if not request.user.is_superuser:
+            queryset = Post.objects.all()
+            context={
+            "object_list": queryset
         }
-        return HttpResponse(loader.get_template('authenticatedHome.html').render(context,request))
+            return HttpResponse(loader.get_template('authenticatedHome.html').render(context,request))
+        else:
+            return HttpResponse('Login as a user')
     else:
       return HttpResponse(loader.get_template('home.html').render({},request))
 
@@ -95,5 +98,7 @@ def adminPanel(request):
 def Logout(request):
     logout(request)
     return redirect(home) 
+
+
 
   
