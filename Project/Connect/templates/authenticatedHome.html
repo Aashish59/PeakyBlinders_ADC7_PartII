@@ -1,48 +1,74 @@
 {% extends 'base.html' %}
+{% block createpost %}
+<div class="col-2">   
+    <a href="/uploads"><button class="btn btn-secondary">Create a post</button></a>
+</div>
+{% endblock %}
 {% block content %}
 <div class="container-fluid">
 <br>
-<div class="row">
-    <div class="col-1">
+    <div class="row">
+        <div class="col-1">
 
-    </div>
-    <div class="col-10">
-        {% load static %}
-        <img src="{% static 'images/c.jpg' %}" alt="" style="width: 100%; border-radius: 10px; height:300px;;">
-    </div>
-</div>
-<div class="row">
-    <div class="col-1">
-
-    </div>
-    <div class="col-2">
-        
-    </div>
-    <div class="col-8">
-        <div class="card-body"> 
-            <a href="/uploads"><button class="btn btn-primary">Create Post</button></a>
         </div>
-        {% for obj in object_list %} 
-        <div class="card" style="border-radius: 20px;">            
-            <div class="card-body">
-                {% load static %}
-                <div class="row">
-                  <div class="row col-1"><img src="{% static 'images/b.jpg' %}" class="rounded-circle" height=40px width=40px alt="" style="margin-left:10px; margin-top:-5px;"></div> 
-                  <div class="col-4" style="margin-left: 5px;">
-                    <h4 style="margin-top:-5px; margin-left:4px;">Fname Lname </h4> 
-                   <p style="margin-top:-12px; margin-left: 5px; font-size: 12px; font-weight: 500; color:grey;">{{ obj.timestap }}</p> </div>
+        <div class="col-10">
+            {% load static %}
+            <img src="{% static 'images/c.jpg' %}" alt="" style="width: 100%; border-radius: 10px; height:300px;;">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1">
+
+        </div>
+        <div class="col-2">
+            
+        </div>
+        <div class="col-8">
+            <br>
+            {% for obj in object_list %} 
+            <div class="card" style="border-radius: 20px;">            
+                <div class="card-header">
+                    {% load static %}
+                    <div class="row" style="margin-top:10px; margin-bottom: -10px;">
+                    <div class="row col-1">
+                        <img src="{% static 'images/b.jpg' %}" class="rounded-circle" height=40px width=40px alt="" style="margin-left:10px; margin-top:-5px;">
+                        </div> 
+                    <div class="row col-4" style="margin-left: 5px;">
+                        <h4 style="margin-top:-5px; margin-left:4px;">{{ obj.user.get_full_name }} </h4> 
+                    <p style="margin-top:-12px; margin-left: 5px; font-size: 12px; font-weight: 500; color:grey;">{{ obj.timestap }}</p>
+                    </div>
+                    <div>
+                    <div class="dropdown2">
+                        <img src="https://img.icons8.com/color/48/000000/menu-2.png" class="rounded-circle menu" height=30 width=30 data-toggle="dropdown"> 
+                        <ul class="dropdown-menu dropdown-menu-right ddmenu2">
+                            {% if request.user == obj.user %}
+                            <a href="/editpost/{{ obj.id }}"><button class="dropdown-item" type="button">Edit</button></a>
+                            <div class="dropdown-divider"></div>
+                            {% endif %}
+                            {% if request.user == obj.user or request.user == is_staff %}
+                            <a href="/deletepost/{{ obj.id }}"><button class="dropdown-item" type="button">Delete</button></a>
+                            {% else %}
+                            <button class="dropdown-item" type="button" disabled>Delete</button>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    </div>
+                    </div>
                 </div>
-                <h3>{{ obj.title }}</h3>
-                <p>{{ obj.content }}</p>
-
+                <div class="card-body">
+                <h5 class="card-title">{{ obj.title }}</h5>
+                <p class="card-text">{{ obj.content }}</p>
+                <div class="card-file">
+                    {{ obj.files }}
+                </div>
+                </div>
             </div>
+            <br>
+            {% endfor %}
         </div>
-        <br>
-        {% endfor %}
-    </div>
-    <div class="col-1">
+        <div class="col-1">
 
+        </div>
     </div>
-</div>
 </div>
 {% endblock %}
