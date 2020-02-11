@@ -11,7 +11,6 @@ from Post.models import Post
 def home(request):
     if request.user.is_superuser and request.user.is_staff:
         return redirect(adminPanel)
-    
     if request.user.is_authenticated:
             queryset = Post.objects.all()
             context={
