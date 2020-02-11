@@ -8,9 +8,6 @@
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/style.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/dropdown.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Slabo+27px&display=swap" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <title> {% block title %} Connect {% endblock %} </title>
 </head>
 <body>
@@ -19,13 +16,38 @@
           <div class="container-fluid">
             <div class="col-sm row align-items-start">
                 {% load static %} 
-              <a class="navbar-brand" href="#"><img src="{% static 'images/logo.png' %}" style="height: 50px;" alt=""></a>
+              <a class="navbar-brand" href="/adminpanel"><img src="{% static 'images/logo.jpg' %}" style="height: 50px;" alt=""></a>
             </div>
-            {% block authentication %}
+            {% if request.user.is_authenticated %}
+            <form class="form-inline my-2 my-lg-0 col-9">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="width: 400px;">
+            </form>
+            <div class="dropdown">
+                  {% load static %}
+                  <img class="rounded-circle" src="{% static 'images/b.jpg' %}" data-toggle="dropdown" style="height: 40px;" alt="">
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <center><img class="rounded-circle" src="{% static 'images/b.jpg' %}" alt="" height="70" width="70">
+                  <h4 class="ddname">{{user.first_name}} {{user.last_name}} </h4>
+                  <p class="ddemail"> {{user.email}} </p>
+                  <button class="btn btn-secondary btn-sm" style="border-radius: 20px; margin-bottom: 20px;">Manage your account</button>
+                  {% block manageaccounts %}
+                  {% endblock %}
+                  </center>
+                  <div class="dropdown-divider"></div>
+                  <center><a href="/logout"><button class="btn btn-danger btn-sm" style="margin-top:5px; margin-bottom: 5px; width: 250px; border-radius: 10px;">Sign Out</button></a></center>
+                  <div class="dropdown-divider"></div>
+                  <center>
+                    <span style="font-size:10px;color:grey">Privacy policy . Terms of service</span>
+                  </center>
+                </ul>
+              </li>
+            </ul>
+          </div>
+            {% else %}
             <div class="row align-items end">
               <a href="/login"><button type="button" class="btn btn-secondary" name="button">Login</button></a>
             </div>
-            {% endblock %}
+            {% endif %}
           </div>
         </nav>
       </header>
