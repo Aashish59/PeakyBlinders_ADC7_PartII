@@ -1,8 +1,9 @@
-{% block authentication %}
+{% extends 'base.html' %}
             <form class="form-inline my-2 my-lg-0 col-9">
               <input class="form-control mr-sm-2" name="srh" type="search" placeholder="Search" aria-label="Search" style="width: 400px;">
             </form>
           </form>
+            {% block content %}
             <h1 style="margin-left: 150px;">Search Results:</h1>
             <div class="viewproduct">
                 {% for post in posts %}
@@ -12,13 +13,12 @@
             
                         <p class="card-text"><b>{{post.content}}</b></b>
                         </p>
-                        <a href="" class="btn btn-dark">View details</a>
                     </div>
                 </div>
-                {% empty %} <p>There are no such products available.</p>
+                {% empty %} <p>There are no such posts available.</p>
                 
             
-                Your search - <b> {{query}} </b>- did not match any documents.
+                Your search did not match any documents.
             
                  Suggestions:
                   <ul>

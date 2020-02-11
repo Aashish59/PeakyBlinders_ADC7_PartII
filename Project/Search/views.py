@@ -18,9 +18,11 @@ def search(request):
                     'posts': posts
                 })
         else:
-            return HttpResponse("not found")  
+                return render(request,'search.html', {
+                    'posts': posts
+                })
     
-    return render(request,'authenticatedHome.html',{
+    return render(request,'base.html',{
         'post': post
     })    
             

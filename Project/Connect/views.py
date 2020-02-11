@@ -9,16 +9,16 @@ from Post.models import Post
 
 # Create your views here.
 def home(request):
-    print(request.user)
+    if request.user.is_superuser and request.user.is_staff:
+        return redirect(adminPanel)
+    
     if request.user.is_authenticated:
-        if not request.user.is_superuser:
             queryset = Post.objects.all()
             context={
             "object_list": queryset
         }
             return HttpResponse(loader.get_template('authenticatedHome.html').render(context,request))
-        else:
-            return HttpResponse('Login as a user')
+        
     else:
       return HttpResponse(loader.get_template('home.html').render({},request))
 
