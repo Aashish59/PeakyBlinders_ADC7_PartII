@@ -26,7 +26,11 @@ urlpatterns = [
 urlpatterns += [
     path('' ,include('Connect.urls')),
     path('',include('Post.urls')),
+<<<<<<< HEAD
     path('',include('attendance.urls')),
+=======
+    path('',include('Search.urls')),
+>>>>>>> cbcef7a654fbbd15f3eb515838f39dc18ada6ba1
 ]
 
 urlpatterns += [

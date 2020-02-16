@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+<br>
+<div class="row">
+    <div class="col-2">
+
+    </div>
+    <div class="col-8 card" style="border-radius: 10px;;">
+        <div class="card-body"> 
+        <form action="" method="POST">                                                             
+            {% csrf_token %}
+            <div class="form-label-group">
+                <input type="text" id="title" name="title" class="form-control" placeholder="Title" value="{{ post.title }}" autofocus>
+            </div>
+            <br>
+            <div class="form-label-group">
+                <textarea id="Conetnt" name="content" class="form-control" placeholder="Write your content" style="height: 200px;"  required autofocus>{{ post.content }}</textarea>
+            </div>
+            <br>
+            <button class="btn btn-sm btn-secondary btn-block btn-signin" type="submit">Share</button> <br>
+            <a href="/"><button class="btn btn-sm btn-danger btn-block btn-signin" type="button">Cancel and go back</button></a>
+        </form>
+        </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}
