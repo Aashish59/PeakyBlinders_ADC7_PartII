@@ -7,5 +7,6 @@ urlpatterns = [
     path('signup/',register),
     path('delete/<int:id>', delete),
     path('',home),
-    path('adminpanel/',adminPanel),   
+    path('adminpanel/',adminPanel),
+     
 ]
