@@ -18,6 +18,7 @@ from django.urls import path, include
 from Connect.views import Login
 from Connect.views import Logout
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
@@ -25,6 +26,7 @@ urlpatterns = [
 urlpatterns += [
     path('' ,include('Connect.urls')),
     path('',include('Post.urls')),
+    path('',include('attendance.urls')),
 ]
 
 urlpatterns += [
@@ -38,3 +40,10 @@ urlpatterns += [
     path('logout/', Logout),
     
 ]
+
+urlpatterns += [
+    
+    
+]
+
+
