@@ -7,11 +7,12 @@ from django.shortcuts import redirect
 from django.template import loader
 from Connect.views import home
 from Post.models import Post
-
+from django.contrib.auth.decorators import login_required
 from Connect.views import home
 
 
 # Create your views here.
+@login_required
 def post_upload(request):
     if not request.user.is_authenticated:
         return redirect(home)
@@ -26,11 +27,13 @@ def post_upload(request):
         post.save()
         return redirect(home)
 
+@login_required
 def post_delete(request,id):  
     post = Post.objects.get(id=id)  
     post.delete()  
     return redirect(home)
-
+    
+@login_required
 def post_edit(request,id): 
     post = Post.objects.get(id=id)
     if request.method == 'GET':

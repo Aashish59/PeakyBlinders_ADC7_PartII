@@ -6,8 +6,9 @@ from django.http import HttpResponse
 from django.shortcuts import loader
 from django.shortcuts import redirect
 from Connect.views import *
+from django.contrib.auth.decorators import login_required
 # Create your views here.
-
+@login_required
 def change_password(request):
     if request.method =="GET":
         return HttpResponse(loader.get_template('change-password.html').render({},request))
